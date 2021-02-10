@@ -2,7 +2,10 @@ package org.group8.bostonmetrosystem;
 
 public class BadFileException extends Exception {
 
-    BadFileException(String errorMessage) {
+    private String error;
 
+    BadFileException(String errorMessage) {
+        error = errorMessage;
+        System.out.println("Error: " + error);
     }
 }
