@@ -1,0 +1,49 @@
+@startuml
+!include skinparam.puml
+
++interface Vertex {
+    +getID()
+    +setID(int id)
+    +getLabel()
+    +setLabel(String label)
+}
+
++interface Edge {
+    +getLabel()
+    +setLabel(String label)
+    +getStartVertex()
+    +setStartVertex()
+    +getEndVertex()
+    +setEndVertex()
+}
+note bottom: If we did weights would\ncould they be 1 for same\n line and 2 for switching lines?
+
++interface GraphADT {
+    +getVertices()
+    +getEdges()
+    +hasEdge(Vertex startV, Vertex endV)
+    +isEmpty()
+    +getNumVertices()
+    +getNumEdges()
+    +addVertex(Vertex v)
+    +addEdge(Edge edge)
+    +removeEdge(Edge edge)
+    +removeVertex(Vertex v)
+}
+
++class MultiGraph implements GraphADT {
+    -ArrayList<Vertex> Vertices
+    -ArrayList<Edge> edges
+    +getVertices()
+    +getEdges()
+    +hasEdge(Vertex startV, Vertex endV)
+    +isEmpty()
+    +getNumVertices()
+    +getNumEdges()
+    +addVertex(Vertex v)
+    +addEdge(Edge edge)
+    +removeEdge(Edge edge)
+    +removeVertex(Vertex v)
+}
+
+@enduml
