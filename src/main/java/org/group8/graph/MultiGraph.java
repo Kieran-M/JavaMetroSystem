@@ -1,4 +1,4 @@
-package org.group8.multigraph;
+package org.group8.graph;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,10 @@ public class MultiGraph implements GraphADT {
     private ArrayList<Vertex> vertices;
     private ArrayList<Edge> edges;
 
+    MultiGraph() {
+        vertices = new ArrayList<>();
+        edges = new ArrayList<>();
+    }
 
     @Override
     public ArrayList<Vertex> getVertices() {

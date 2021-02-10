@@ -1,4 +1,4 @@
-package org.group8.multigraph;
+package org.group8.graph;
 
 public interface Vertex {
 
