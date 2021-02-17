@@ -9,46 +9,50 @@ import java.util.List;
  *
  * @param <E> the type of vertices in the graph
  */
-public interface GraphADT<E> {
+public interface Graph<E> {
 
     /**
      * Adds a vertex to the graph.
      *
      * @param vertex the vertex to be added to the graph
+     * @return {@code true} if the graph changed as a result of the call
      */
-    void addVertex(E vertex);
+    boolean addVertex(E vertex);
 
     /**
      * Adds vertices from a {@code Collection} of vertices.
      *
      * @param vertices collection of vertices to be added to the graph
+     * @return {@code true} if the graph changed as a result of the call
      */
-    void addVertices(Collection<E> vertices);
+    boolean addVertices(Collection<? extends E> vertices);
 
     /**
      * Adds an edge to the graph. Edges cannot exist without vertices to connect, therefore vertices must be added
      * before adding edges. Many edges can have the same label.
      *
-     * @param label the label of the edge
-     * @param vertexStart the starting vertex of the edge
-     * @param vertexEnd the ending vertex of the edge
+     * @param startVertex the starting vertex of the edge
+     * @param endVertex the ending vertex of the edge
+     * @return {@code true} if the graph changed as a result of the call
      */
-    void addEdge(E vertexStart, E vertexEnd);
+    boolean addEdge(E startVertex, E endVertex) throws VertexNotFoundException;
 
     /**
      * Removes the first occurrence of the specified vertex from the graph if it is present.
      *
      * @param vertex the vertex to be removed from the graph
+     * @return {@code true} if the graph contained the specified vertex object
      */
-    void removeVertex(E vertex);
+    boolean removeVertex(E vertex);
 
     /**
      * Removes the edge denoted by the specified start and end vertices.
      *
-     * @param vertexStart the starting vertex of the edge to be removed
-     * @param vertexEnd the ending vertex of the edge to be removed
+     * @param startVertex the starting vertex of the edge to be removed
+     * @param endVertex the ending vertex of the edge to be removed
+     * @return {@code true} if the graph contained an edge between the specified vertex objects
      */
-    void removeEdge(E vertexStart, E vertexEnd);
+    boolean removeEdge(E startVertex, E endVertex);
 
     /**
      * Checks if the specified elements are connected by an edge.
