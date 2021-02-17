@@ -1,16 +1,8 @@
 @startuml
 !include skinparam.puml
 
-+interface Vertex {
-    +getID()
-    +setID(int id)
-    +getLabel()
-    +setLabel(String label)
-}
 
-+interface Edge {
-    +getLabel()
-    +setLabel(String label)
++class Edge {
     +getStartVertex()
     +setStartVertex()
     +getEndVertex()

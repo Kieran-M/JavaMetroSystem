@@ -1,13 +1,34 @@
 @startuml
-'https://plantuml.com/class-diagram
+!include skinparam.puml
+!include MultiGraphADT.puml
 
-+class MetroMapParser {
++class BostonMetro{
+    -String currentStation
+    -String destination
+    -ArrayList route
+    +getStation()
+    +getDestination()
+    +setDestination()
+    +getRoute()
+}
+
++class MetroMapParser{
     +generateGraphFromFile()
 }
 
 +class Station{
+    -int id
+    -String station
+    -String metroLine
     +getID()
-    +getLabel()
+    +getName()
+    +getMetroLine()
 }
+
+BostonMetro --> MetroMapParser
+BostonMetro o-- Station
+MetroMapParser --> Station
+BostonMetro ..|> MultiGraph : <<extends>>
+MultiGraph *-- Edge
 
 @enduml
