@@ -7,9 +7,9 @@
     -String destination
     -ArrayList route
     +getStation()
-    +setStation()
+    +setStation(String name)
     +getDestination()
-    +setDestination()
+    +setDestination(String dest)
     +getRoute()
 }
 
@@ -24,6 +24,7 @@
     +getID()
     +getName()
     +getMetroLine()
+    +setMetroLine(String line)
 }
 
 BostonMetro --> MetroMapParser
