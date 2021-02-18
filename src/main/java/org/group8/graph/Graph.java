@@ -8,8 +8,20 @@ import java.util.List;
  * multiple edges or a single edge connecting them.
  *
  * @param <E> the type of vertices in the graph
+ * @see Edge
+ * @see MultiGraph
  */
 public interface Graph<E> {
+
+    /**
+     * Error message for errors related to the start vertex.
+     */
+    String STARTVERTEXERROR = "Start vertex not found in graph";
+
+    /**
+     * Error message for errors related to the end vertex.
+     */
+    String ENDVERTEXERROR = "End vertex not found in graph";
 
     /**
      * Adds a vertex to the graph.

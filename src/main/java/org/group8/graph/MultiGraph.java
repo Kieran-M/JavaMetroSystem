@@ -1,6 +1,8 @@
 package org.group8.graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A Multi-graph implementation of the {@code Graph} interface. It makes use of the {@code Edge} class to store the
@@ -65,10 +67,10 @@ public class MultiGraph<E> implements Graph<E> {
     @Override
     public boolean addEdge(E startVertex, E endVertex) throws VertexNotFoundException {
         if (!vertices.contains(startVertex)) {
-            throw new VertexNotFoundException("Start vertex not found in graph");
+            throw new VertexNotFoundException(STARTVERTEXERROR);
         }
         if (!vertices.contains(endVertex)) {
-            throw new VertexNotFoundException("End vertex not found in graph");
+            throw new VertexNotFoundException(ENDVERTEXERROR);
         }
 
         return edges.add(new Edge<>(startVertex, endVertex));
@@ -96,7 +98,7 @@ public class MultiGraph<E> implements Graph<E> {
      */
     @Override
     public boolean removeEdge(E startVertex, E endVertex) {
-        return edges.remove(new Edge<>(startVertex, endVertex));
+        return edges.removeIf(edge -> edge.getStartVertex().equals(startVertex) && edge.getEndVertex().equals(endVertex));
     }
 
     /**
@@ -108,7 +110,14 @@ public class MultiGraph<E> implements Graph<E> {
      */
     @Override
     public boolean isAdjacent(E startVertex, E endVertex) {
-        return edges.contains(new Edge<>(startVertex, endVertex));
+        boolean adjacent = false;
+        for (Edge<E> edge: edges) {
+            if (edge.getStartVertex().equals(startVertex) && edge.getEndVertex().equals(endVertex)) {
+                adjacent = true;
+                break;
+            }
+        }
+        return adjacent;
     }
 
     /**
@@ -151,7 +160,7 @@ public class MultiGraph<E> implements Graph<E> {
     public List<E> getAdjacent(E vertex) {
         List<E> adjacentVertices = new ArrayList<>();
         for (Edge<E> edge: edges) {
-            if (edge.getStartVertex() == vertex) {
+            if (edge.getStartVertex().equals(vertex)) {
                 adjacentVertices.add(edge.getEndVertex());
             }
         }

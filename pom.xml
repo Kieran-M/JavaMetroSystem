@@ -7,6 +7,9 @@
     <groupId>org.group8</groupId>
     <artifactId>cs308-metro-system</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>Group8-Metro</name>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -25,6 +28,7 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
