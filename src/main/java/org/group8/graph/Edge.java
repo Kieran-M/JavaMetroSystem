@@ -1,7 +1,7 @@
 package org.group8.graph;
 
 /**
- * A link between two vertices for use in implementations of the {@code graph} interface.
+ * A link between two vertex {@code Objects} for use in implementations of the {@code graph} interface.
  *
  * @param <E> The type of vertices in this edge
  * @see Graph
@@ -10,12 +10,12 @@ package org.group8.graph;
 public class Edge<E> {
 
     /**
-     * The vertex object that is at the start of the edge.
+     * The vertex {@code Object} that is at the start of the edge.
      */
     private final E startVertex;
 
     /**
-     * The vertex object that is at the end of the edge.
+     * The vertex {@code Object} that is at the end of the edge.
      */
     private final E endVertex;
 
