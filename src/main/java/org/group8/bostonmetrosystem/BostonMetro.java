@@ -1,5 +1,7 @@
 package org.group8.bostonmetrosystem;
 
+import org.group8.graph.MultiGraph;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +37,14 @@ public class BostonMetro {
     private Map<String, List<String>> red = new HashMap<String, List<String>>();
     private Map<String, List<String>> green = new HashMap<String, List<String>>();
     private Map<String, List<String>> mattapan = new HashMap<String, List<String>>();
-
+    private MultiGraph graph = new MultiGraph();
 
 
     /**
      * Prints the current station
      */
-    public void getStation(){
-        System.out.println("Your current Station is: " + currentStation);
+    public String getStation(){
+        return currentStation;
     }
 
     /**
@@ -68,8 +70,8 @@ public class BostonMetro {
     /**
      * Prints the destination name
      */
-    public void getDestination(){
-        System.out.println("Your destination Station is: " + destination);
+    public String getDestination(){
+        return destination;
     }
 
     /**
@@ -93,6 +95,17 @@ public class BostonMetro {
         } catch (IOException e) {
             throw new BadFileException("Can not read text file");
         }
+    }
+
+    /**
+     * Adds all the nodes from the list into the graph
+     */
+    public void addNodes() {
+        for (int i = 0; i < stations.size(); i++){
+            graph.addVertex(stations.get(i).get(1));
+        }
+        System.out.println("Number of Nodes in the graph are: " + graph.getNumVertices());
+        System.out.println("Nodes: " + graph.getVertices());
     }
 
     public void getLines(){
@@ -148,7 +161,8 @@ public class BostonMetro {
         } catch (BadFileException e) {
             System.out.println("File has wrong format");
         }
-        Metro.getLines();
+        Metro.addNodes();
+//        Metro.getLines();
 //        Metro.setStation();
 //        Metro.setDestination();
 //        Metro.getStation();

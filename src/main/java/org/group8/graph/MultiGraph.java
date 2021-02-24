@@ -28,7 +28,7 @@ public class MultiGraph<E> implements Graph<E> {
     /**
      * Constructs an empty graph.
      */
-    MultiGraph() {
+    public MultiGraph() {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
     }
