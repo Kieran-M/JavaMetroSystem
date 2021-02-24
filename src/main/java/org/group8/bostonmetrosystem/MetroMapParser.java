@@ -126,7 +126,7 @@ public class MetroMapParser
     {
 
         //For using after each station is added.
-        HashMap<Integer,String> stationDirections = new HashMap<Integer,String>();
+        ArrayList<String> stationDirections = new ArrayList<String>();
         ArrayList<Station> StationList = new ArrayList<Station>();
         String line = fileInput.readLine();
         StringTokenizer st;
@@ -206,27 +206,35 @@ public class MetroMapParser
 
                 //This doesn't work, Comparing of objects doesn't quite match so it adds same stations
                 //Fix me.
-                if(!StationList.contains(newStation)) {
+                Boolean found = false;
+                for(Station station : StationList) {
+                    String test = station.getName();
+                    String test2 = newStation.getName();
+                    if(test.equals(test2)) {
+                        found = true;
+                    }
+                }
+
+                if(!found) {
                     graph.addVertex(newStation);
                     StationList.add(newStation);
                 }
-                stationDirections.put(parseInt,(lineName + "," + outboundID + "," + inboundID));
+                stationDirections.add((parseInt + "," + lineName + "," + outboundID + "," + inboundID));
             }
 
             line = fileInput.readLine();
         }
 
 
-        for(Station station : StationList) {
-            String keyValues = stationDirections.get(station.getID());
-            String[] values = keyValues.split(",");
+        for(String station : stationDirections) {
+            String[] values = station.split(",");
 
-            int intoutboundID = Integer.parseInt(values[1]);
-            int intinboundID = Integer.parseInt(values[2]);
+            int intoutboundID = Integer.parseInt(values[2]);
+            int intinboundID = Integer.parseInt(values[3]);
 
             if(!(intoutboundID <= 0 || intoutboundID > StationList.size() || intinboundID <= 0 || intinboundID > StationList.size())) {
-                Station outBoundStation = StationList.get(intoutboundID);
-                Station inBoundStation = StationList.get(intinboundID);
+                Station outBoundStation = StationList.get(intoutboundID-1);
+                Station inBoundStation = StationList.get(intinboundID-1);
                 try {
                     graph.addEdge(outBoundStation, inBoundStation);
                 } catch (VertexNotFoundException e) {
@@ -234,7 +242,9 @@ public class MetroMapParser
                 }
             }
         }
+        System.out.println(stationDirections.size());
         System.out.println(graph.getNumVertices());
+        System.out.println(graph.getNumEdges());
         return;
     }
 
