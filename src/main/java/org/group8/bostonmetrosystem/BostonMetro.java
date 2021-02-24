@@ -85,11 +85,15 @@ public class BostonMetro {
 
     public static void main(String[] args) throws BadFileException {
         BostonMetro Metro = new BostonMetro();
-        Metro.readMap();
-        Metro.setStation();
-        Metro.setDestination();
-        Metro.getStation();
-        Metro.getDestination();
+        try {
+            Metro.readMap();
+        } catch (BadFileException e) {
+            System.out.println("File has wrong format");
+        }
+//        Metro.setStation();
+//        Metro.setDestination();
+//        Metro.getStation();
+//        Metro.getDestination();
     }
 
 }
