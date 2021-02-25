@@ -8,7 +8,7 @@ public class Station {
     /**
      * A {@code String} which stores the station name
      */
-    private String station;
+    private String name;
     /**
      * A {@code String} which stores which line the metro takes
      */
@@ -17,11 +17,11 @@ public class Station {
     /**
      * Constructs a station with the specified ID and Name
      * @param id the ID of a Station
-     * @param station the name of the station
+     * @param name the name of the station
      */
-    Station(int id, String station) {
+    Station(int id, String name) {
         this.id = id;
-        this.station = station;
+        this.name = name;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Station {
      * @return station name
      */
     public String getName(){
-        return station;
+        return name;
     }
 
     /**

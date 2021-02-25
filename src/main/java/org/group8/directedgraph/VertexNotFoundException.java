@@ -1,10 +1,10 @@
-package org.group8.graph;
+package org.group8.directedgraph;
 
 /**
- * This exception is thrown when an edge is trying to be constructed from vertices which have not been added to the graph.
+ * This exception is thrown when an edge is trying to be constructed from vertices which have not been added to the directedgraph.
  *
  * @see MultiGraph
- * @see Edge
+ * @see EdgeConcrete
  */
 public class VertexNotFoundException extends Exception {
     /**
