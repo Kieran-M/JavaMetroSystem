@@ -7,6 +7,7 @@ import org.group8.directedgraph.VertexNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -56,7 +57,6 @@ public class MetroMapParser
 {
 
     private BufferedReader fileInput;
-
 
     public static void main(String[] args)
     {
@@ -131,6 +131,9 @@ public class MetroMapParser
     public DirectedGraph<Station, Track<Station>> generateGraphFromFile()
             throws IOException, BadFileException, VertexNotFoundException {
 
+        //For using after each station is added.
+        ArrayList<String> stationDirections = new ArrayList<String>();
+        ArrayList<Station> StationList = new ArrayList<Station>();
         String line = fileInput.readLine();
         StringTokenizer st;
         List<Station> stationList = new ArrayList<>();

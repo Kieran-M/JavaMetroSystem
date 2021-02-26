@@ -24,6 +24,11 @@ public class Station {
         this.name = name;
     }
 
+    public Station() {
+
+    }
+
+
     /**
      * Gets the station ID
      * @return station ID
@@ -54,5 +59,13 @@ public class Station {
      */
     public void setMetroLine(String line){
         metroLine = line;
+    }
+
+    public void setID(int ID){
+        id = ID;
+    }
+
+    public void setName(String name){
+        station = name;
     }
 }
