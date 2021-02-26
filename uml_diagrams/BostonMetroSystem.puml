@@ -2,10 +2,11 @@
 !include skinparam.puml
 !include MultiGraphADT.puml
 
-+class BostonMetro{
++class BostonMetro extends MultiGraph{
+    -Station station
     -String currentStation
     -String destination
-    -ArrayList route
+    -ArrayList<String> route
     +getStation()
     +setStation(String name)
     +getDestination()
@@ -14,6 +15,7 @@
 }
 
 +class MetroMapParser{
+    +usage()
     +generateGraphFromFile()
 }
 
@@ -24,13 +26,24 @@
     +getID()
     +getName()
     +getMetroLine()
+    +setID(int ID)
+    +setName(int name)
     +setMetroLine(String line)
 }
+
++class Track implements DirectedEdge{
+    -String lineColour
+    -V sourceVertex
+    -V targetVertex
+    +getLineColour()
+    +getSourceVertex()
+    +getTargetVertex()
+}
+
 
 BostonMetro --> MetroMapParser
 BostonMetro o-- Station
 MetroMapParser --> Station
-BostonMetro ..|> MultiGraph : <<extends>>
-MultiGraph *-- Edge
+MetroMapParser --> Track
 
 @enduml
