@@ -19,10 +19,15 @@ public class Station {
      * @param id the ID of a Station
      * @param station the name of the station
      */
-    Station(int id, String station) {
+  public Station(int id, String station) {
         this.id = id;
         this.station = station;
     }
+
+    public Station() {
+
+    }
+
 
     /**
      * Gets the station ID
@@ -54,5 +59,13 @@ public class Station {
      */
     public void setMetroLine(String line){
         metroLine = line;
+    }
+
+    public void setID(int ID){
+        id = ID;
+    }
+
+    public void setName(String name){
+        station = name;
     }
 }

@@ -90,7 +90,7 @@ public class BostonMetro {
     public void readMap() throws BadFileException{
         try {
             MetroMapParser read = new MetroMapParser("src/main/resources/bostonmetro.txt");
-            stations = read.generateGraphFromFile();
+            read.generateGraphFromFile();
             System.out.println(stations);
         } catch (IOException e) {
             throw new BadFileException("Can not read text file");
