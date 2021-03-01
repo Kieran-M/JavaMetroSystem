@@ -2,15 +2,8 @@
 !include skinparam.puml
 !include MultiGraphADT.puml
 
-+class BostonMetro extends MultiGraph{
-    -Station station
-    -String currentStation
-    -String destination
++class BostonMetro{
     -ArrayList<String> route
-    +getStation()
-    +setStation(String name)
-    +getDestination()
-    +setDestination(String dest)
     +getRoute()
 }
 
@@ -45,5 +38,6 @@ BostonMetro --> MetroMapParser
 BostonMetro o-- Station
 MetroMapParser --> Station
 MetroMapParser --> Track
+MetroMapParser --> MultiGraph
 
 @enduml
