@@ -1,37 +1,44 @@
 @startuml
 !include skinparam.puml
 
-
-+class Edge {
-    +getStartVertex()
-    +setStartVertex()
-    +getEndVertex()
-    +setEndVertex()
-}
-note bottom: If we did weights \ncould they be 1 for same\n line and 2 for switching lines?
-
-+interface GraphADT {
-    +getVertices()
-    +getEdges()
-    +hasEdge(Vertex startV, Vertex endV)
++interface DirectedGraph extends DirectedEdge{
+    -String NOVERTEXTERROR
+    +addVertex(V vertex)
+    +addVertices(Collection<extends v> vertices)
+    +addEdge(E edge)
+    +addEdges(Collection<extends E> edges)
+    +removeVertex(V vertex)
+    +removeEdge(V sourceVertex, V targetVertex)
+    +removeEdge(E edge)
+    +isAdjacent(V sourceVertex, V targetVertex)
     +isEmpty()
     +getNumVertices()
     +getNumEdges()
-    +addVertex(Vertex v)
-    +addEdge(Edge edge)
+    +getAdjacent()
+    +getVertices()
 }
 
-+class MultiGraph implements GraphADT {
++interface DirectedEdge{
+    +getSourceVertex()
+    +getTargetVertex()
+}
+
++class MultiGraph extends DirectedEdge implements DirectedGraph {
     -ArrayList<Vertex> Vertices
     -ArrayList<Edge> edges
-    +getVertices()
-    +getEdges()
-    +hasEdge(Vertex startV, Vertex endV)
+    +addVertex(V vertex)
+    +addVertices(Collection<extends v> vertices)
+    +addEdge(E edge)
+    +addEdges(Collection<extends E> edges)
+    +removeVertex(V vertex)
+    +removeEdge(V sourceVertex, V targetVertex)
+    +removeEdge(E edge)
+    +isAdjacent(V sourceVertex, V targetVertex)
     +isEmpty()
     +getNumVertices()
     +getNumEdges()
-    +addVertex(Vertex v)
-    +addEdge(Edge edge)
+    +getAdjacent()
+    +getVertices()
 }
 
 @enduml

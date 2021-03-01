@@ -3,17 +3,12 @@
 !include MultiGraphADT.puml
 
 +class BostonMetro{
-    -String currentStation
-    -String destination
-    -ArrayList route
-    +getStation()
-    +setStation(String name)
-    +getDestination()
-    +setDestination(String dest)
+    -ArrayList<String> route
     +getRoute()
 }
 
 +class MetroMapParser{
+    +usage()
     +generateGraphFromFile()
 }
 
@@ -24,13 +19,25 @@
     +getID()
     +getName()
     +getMetroLine()
+    +setID(int ID)
+    +setName(int name)
     +setMetroLine(String line)
 }
+
++class Track implements DirectedEdge{
+    -String lineColour
+    -V sourceVertex
+    -V targetVertex
+    +getLineColour()
+    +getSourceVertex()
+    +getTargetVertex()
+}
+
 
 BostonMetro --> MetroMapParser
 BostonMetro o-- Station
 MetroMapParser --> Station
-BostonMetro ..|> MultiGraph : <<extends>>
-MultiGraph *-- Edge
+MetroMapParser --> Track
+MetroMapParser --> MultiGraph
 
 @enduml
