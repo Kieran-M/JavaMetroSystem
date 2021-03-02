@@ -3,7 +3,7 @@
 skinparam class {
 BackgroundColor white
 BorderColor black
-ArrowColor Black
+ArrowColor black
 }
 
 @enduml
