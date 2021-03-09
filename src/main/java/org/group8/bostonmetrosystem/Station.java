@@ -11,10 +11,6 @@ public class Station {
      * A {@code String} which stores the station name
      */
     private String name;
-    /**
-     * A {@code String} which stores which line the metro takes
-     */
-    private String metroLine;
 
     /**
      * Constructs a station with the specified ID and Name
@@ -43,14 +39,6 @@ public class Station {
     }
 
     /**
-     * Gets the Metro Line
-     * @return the metro line
-     */
-    public String getMetroLine() {
-        return metroLine;
-    }
-
-    /**
      * Overrides the equals function to allow for proper comparison between stations.
      * @param o The object to compare to this object
      * @return {@code true} if the object is the same as this object
@@ -64,7 +52,7 @@ public class Station {
             return false;
         }
         Station station = (Station) o;
-        return id == station.id && getName().equals(station.getName()) && getMetroLine().equals(station.getMetroLine());
+        return id == station.id && getName().equals(station.getName());
     }
 
     /**
@@ -73,6 +61,6 @@ public class Station {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id, getName(), getMetroLine());
+        return Objects.hash(id, getName());
     }
 }
