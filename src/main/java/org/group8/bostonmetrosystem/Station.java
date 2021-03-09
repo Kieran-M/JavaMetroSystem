@@ -1,5 +1,7 @@
 package org.group8.bostonmetrosystem;
 
+import java.util.Objects;
+
 public class Station {
     /**
      * An {@code int} which stores the stations ID
@@ -44,48 +46,33 @@ public class Station {
      * Gets the Metro Line
      * @return the metro line
      */
-    public String getMetroLine(){
+    public String getMetroLine() {
         return metroLine;
     }
 
     /**
-     * Sets the line for the metro
-     * @param line the line the metro is going to take from the station
-     */
-    public void setMetroLine(String line){
-        metroLine = line;
-    }
-
-    public void setID(int id){
-        this.id = id;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    /**
-     * Overrides equals method to allow station objects to be properly compared
-     * @param obj The object you're checking this station object is equal to
-     * @return {@code true} if the objects are equal
+     * Overrides the equals function to allow for proper comparison between stations.
+     * @param o The object to compare to this object
+     * @return {@code true} if the object is the same as this object
      */
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null || this.getClass() != obj.getClass()) {
-            return false;
-        }
-        if (obj == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        return this.getID() == ((Station) obj).getID();
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Station station = (Station) o;
+        return id == station.id && getName().equals(station.getName()) && getMetroLine().equals(station.getMetroLine());
     }
 
     /**
-     * Overrides the hashcode to allow proper equality checking
-     * @return {@code int} the hascode of the object
+     * Overrides the {@code hashCode} method for proper comparison between stations.
+     * @return the hashcode of the object
      */
     @Override
     public int hashCode() {
-        return id;
+        return Objects.hash(id, getName(), getMetroLine());
     }
 }
