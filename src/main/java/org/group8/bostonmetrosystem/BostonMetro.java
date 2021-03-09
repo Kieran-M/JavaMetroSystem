@@ -79,11 +79,11 @@ public class BostonMetro {
             ArrayList<Station> agenda = new ArrayList<>(); //Arraylist of stations to be checked
             agenda.add(this.getStation()); //Adding the current station to the agenda
             HashMap<Station, Station> stationLinks = new HashMap<>(); //Hasmap containing the links between stations
-            //ArrayList<Station> route = new ArrayList<>(); //The route between the 2 stations
+            route = new ArrayList<>(); //The route between the 2 stations
 
             //Check the agenda for goal station
             while (!agenda.isEmpty()) {
-                Station searchStation = agenda.remove(-1); //Current station to be checked
+                Station searchStation = agenda.remove(agenda.size() - 1); //Current station to be checked
 
                 if (searchStation.getName().equals(destination.getName())) { //If station is destination add it to route
                     route.add(searchStation);
@@ -93,13 +93,16 @@ public class BostonMetro {
                     }
                 }
                 ArrayList<Station> nextStations = new ArrayList<>(graph.getAdjacent(searchStation)); //Get next stations to search and add to relationship map
-                for(Station s: nextStations){
-                    if (!stationLinks.containsKey(s)){
-                        stationLinks.put(s,searchStation);
+                for (Station s : nextStations) {
+                    if (!stationLinks.containsKey(s)) {
+                        stationLinks.put(s, searchStation);
                         agenda.add(s);
                     }
                 }
             }
+            route.forEach(station-> {
+                System.out.println(station.getName());
+            });
             return route;
         } catch (Exception e) {
             e.printStackTrace();
