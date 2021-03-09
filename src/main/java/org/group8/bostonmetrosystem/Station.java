@@ -8,7 +8,7 @@ public class Station {
     /**
      * A {@code String} which stores the station name
      */
-    private String station;
+    private String name;
     /**
      * A {@code String} which stores which line the metro takes
      */
@@ -21,7 +21,7 @@ public class Station {
      */
     Station(int id, String name) {
         this.id = id;
-        this.station = name;
+        this.name = name;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Station {
      * @return station name
      */
     public String getName(){
-        return station;
+        return name;
     }
 
     /**
@@ -56,11 +56,36 @@ public class Station {
         metroLine = line;
     }
 
-    public void setID(int ID){
-        id = ID;
+    public void setID(int id){
+        this.id = id;
     }
 
     public void setName(String name){
         this.name = name;
+    }
+
+    /**
+     * Overrides equals method to allow station objects to be properly compared
+     * @param obj The object you're checking this station object is equal to
+     * @return {@code true} if the objects are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        return this.getID() == ((Station) obj).getID();
+    }
+
+    /**
+     * Overrides the hashcode to allow proper equality checking
+     * @return {@code int} the hascode of the object
+     */
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
