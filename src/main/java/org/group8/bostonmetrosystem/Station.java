@@ -55,4 +55,12 @@ public class Station {
     public void setMetroLine(String line){
         metroLine = line;
     }
+
+    public void setID(int ID){
+        id = ID;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
 }
