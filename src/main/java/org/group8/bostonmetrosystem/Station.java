@@ -66,6 +66,6 @@ public class Station {
     }
 
     public void setName(String name){
-        station = name;
+        this.name = name;
     }
 }
