@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class BostonMetro {
     /**
-     * An {@code Object} which is an instance of the class Station
-     */
-    private Station station;
-    /**
      * A {@code String} which stores the current station the user is at
      */
     private Station currentStation;
@@ -100,9 +96,7 @@ public class BostonMetro {
                     }
                 }
             }
-            route.forEach(station-> {
-                System.out.println(station.getName());
-            });
+            route.forEach(station-> System.out.println(station.getName()));
             return route;
         } catch (Exception e) {
             e.printStackTrace();

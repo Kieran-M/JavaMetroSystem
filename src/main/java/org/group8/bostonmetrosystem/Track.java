@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class Track<V> implements DirectedEdge<V> {
 
-    private String lineColour;
+    private final String lineColour;
 
-    private V sourceVertex;
+    private final V sourceVertex;
 
-    private V targetVertex;
+    private final V targetVertex;
 
     public Track(String lineColour, V sourceVertex, V targetVertex) {
         this.lineColour = lineColour;

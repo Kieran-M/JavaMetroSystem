@@ -1,14 +1,12 @@
 package org.group8.directedgraph;
 
-import org.group8.bostonmetrosystem.Station;
-
 import java.util.Objects;
 
 public class ConcreteDirectedEdge<V> implements DirectedEdge<V> {
 
-    private V sourceVertex;
+    private final V sourceVertex;
 
-    private V targetVertex;
+    private final V targetVertex;
 
     public ConcreteDirectedEdge(V sourceVertex, V targetVertex) {
         this.sourceVertex = sourceVertex;

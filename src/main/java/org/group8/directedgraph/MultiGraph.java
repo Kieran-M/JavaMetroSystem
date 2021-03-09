@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class MultiGraph<V, E extends DirectedEdge<V>> implements DirectedGraph<V, E> {
 
-    private ArrayList<V> vertices;
+    private final ArrayList<V> vertices;
 
-    private ArrayList<E> edges;
+    private final ArrayList<E> edges;
 
     public MultiGraph() {
         vertices = new ArrayList<>();

@@ -6,11 +6,11 @@ public class Station {
     /**
      * An {@code int} which stores the stations ID
      */
-    private int id;
+    private final int id;
     /**
      * A {@code String} which stores the station name
      */
-    private String name;
+    private final String name;
 
     /**
      * Constructs a station with the specified ID and Name
