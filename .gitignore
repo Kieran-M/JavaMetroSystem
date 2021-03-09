@@ -311,3 +311,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,linux,windows,intellij,intellij+iml,intellij+all,maven,sonar,sonarqube
+
+.attach*
