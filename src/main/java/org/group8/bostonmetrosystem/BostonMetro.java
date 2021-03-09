@@ -83,16 +83,16 @@ public class BostonMetro {
 
             //Check the agenda for goal station
             while (!agenda.isEmpty()) {
-                Station searchStation = agenda.remove(-1);
+                Station searchStation = agenda.remove(-1); //Current station to be checked
 
-                if (searchStation.equals(destination)) {
+                if (searchStation.getName().equals(destination.getName())) { //If station is destination add it to route
                     route.add(searchStation);
-                    while (!searchStation.equals(currentStation)) {
+                    while (!searchStation.equals(currentStation)) { //Work back and add previous stations to route
                         searchStation = stationLinks.get(searchStation);
                         route.add(searchStation);
                     }
                 }
-                ArrayList<Station> nextStations = new ArrayList<>(graph.getAdjacent(searchStation));
+                ArrayList<Station> nextStations = new ArrayList<>(graph.getAdjacent(searchStation)); //Get next stations to search and add to relationship map
                 for(Station s: nextStations){
                     if (!stationLinks.containsKey(s)){
                         stationLinks.put(s,searchStation);
