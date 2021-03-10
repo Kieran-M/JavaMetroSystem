@@ -19,11 +19,12 @@ public class BostonMetro {
     /**
      * A {@code String} which stores the current station the user is at
      */
-    private Station currentStation;
+
+    private Station currentStation = new Station(1, "OakGrove") ;
     /**
      * A {@code String} which stores the users destination station
      */
-    private Station destination;
+    private Station destination = new Station(13, "WoodIsland") ;
     /**
      * A {@code List} which stores the route of the Boston Metro between the current station and the destination
      */
@@ -96,7 +97,7 @@ public class BostonMetro {
         try {
             ArrayList<Station> agenda = new ArrayList<>(); //Arraylist of stations to be checked
             agenda.add(this.getStation()); //Adding the current station to the agenda
-            HashMap<Station, Station> stationLinks = new HashMap<>(); //Hasmap containing the links between stations
+            HashMap<Station, Station> stationLinks = new HashMap<>(); //Hashmap containing the links between stations
             route = new ArrayList<>(); //The route between the 2 stations
 
             //Check the agenda for goal station

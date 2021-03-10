@@ -1,61 +1,109 @@
 package org.group8.GUI;
 
 import org.group8.bostonmetrosystem.BostonMetro;
-import org.group8.bostonmetrosystem.MetroMapParser;
 import org.group8.bostonmetrosystem.Station;
-import org.group8.bostonmetrosystem.Track;
-import org.group8.directedgraph.DirectedGraph;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 public class GUI {
-    private static JFrame frame;
+    public static void guiComponents(Container pane) {
+        pane.setLayout(null);
 
+        //Images
+        ImageIcon image =  new ImageIcon("map.jpg");
 
-    public static void main(String[] args){
-        frame();
-    }
-
-    public static void frame(){
-        BostonMetro bostonMetro = new BostonMetro();
-        frame = new JFrame("Boston Metro System"); //Creates the window for the GUI
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Container for the frame
-        Container content = frame.getContentPane();
-
+        //Labels
         JLabel originStation = new JLabel("Origin Station");
-        JLabel finalStation = new JLabel("Final Station");
+        JLabel destinationStation = new JLabel("Destination Station");
+        JLabel imgLabel =  new JLabel();
+        imgLabel.setIcon(image);
 
-        JComboBox stationList = new JComboBox(bostonMetro.getStations().toArray());
-        JComboBox stationList2 = new JComboBox(bostonMetro.getStations().toArray());
-        JButton search = new JButton("Search");
+        //Dropdowns
+        BostonMetro bm = new BostonMetro();
+        //ArrayList<Station> array = newClassObj.getStationArray();
+        JComboBox stationList = new JComboBox(bm.getStations().toArray());
+        JComboBox stationList2 = new JComboBox(bm.getStations().toArray());
+        stationList.setSelectedItem(0);
+        stationList2.setSelectedItem(1);
 
-        //Text area to show the route
-        JTextArea textBox = new JTextArea("Test");
+        //Combobox ActionListeners
+        stationList.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                bm.setStation((Station)stationList.getSelectedItem());
+            }
+        });
+
+        //Textbox
+        JTextArea textBox = new JTextArea();
         textBox.setEditable(false);
 
-        //Add the text labels to the panel
-        JPanel panel = new JPanel(new GridLayout(0,4));
-        panel.add(originStation);
-        panel.add(finalStation);
+        //Buttons
+        JButton searchButton = new JButton("Search");
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList <Station> route = new ArrayList<>(bm.getRoute());
+                for (Station s : route) {
+                    textBox.append(s.getName() + "\n");
+                }
+            }
+        });
 
-        //Add the dropdown lists, buttons and text area to the panel
-        JPanel panel1 = new JPanel(new GridLayout(0,4));
-        panel1.add(stationList);
-        panel1.add(stationList2);
-        panel1.add(search);
-        panel1.add(textBox);
 
-        content.add(panel, BorderLayout.NORTH);
-        content.add(panel1, BorderLayout.SOUTH);
 
-        frame.pack();
-        frame.setSize(500, 100);
+        //Adding components to panel.
+        pane.add(originStation);
+        pane.add(destinationStation);
+        pane.add(stationList);
+        pane.add(stationList2);
+        pane.add(searchButton);
+        pane.add(textBox);
+        pane.add(imgLabel);
+
+        //Absolute positioning for components
+        Insets insets = pane.getInsets();
+        Dimension size = originStation.getPreferredSize();
+        originStation.setBounds(25 + insets.left, 400 + insets.top, size.width, size.height);
+        size = destinationStation.getPreferredSize();
+        destinationStation.setBounds(150 + insets.left, 400 + insets.top, size.width, size.height);
+        size = stationList.getPreferredSize();
+        stationList.setBounds(25 + insets.left, 425 + insets.top, 80, size.height);
+        size = stationList2.getPreferredSize();
+        stationList2.setBounds(150 + insets.left, 425 + insets.top, 80, size.height);
+        size = searchButton.getPreferredSize();
+        searchButton.setBounds(275 + insets.left, 425 + insets.top, 80, size.height);
+        textBox.setBounds(375 + insets.left, 425 + insets.top, 300, 225);
+        imgLabel.setBounds(170 + insets.left, 20 + insets.top, 350, 350);
+    }
+
+
+
+    public static void showGUI() {
+        JFrame frame = new JFrame("Boston Metro System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        guiComponents(frame.getContentPane());
+
+        Insets insets = frame.getInsets();
+
+        frame.setMinimumSize(new Dimension(700, 700));
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+    }
 
-       // stationList.add()
+    public static void main (String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                showGUI();
+            }
+        });
     }
 }
