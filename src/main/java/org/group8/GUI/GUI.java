@@ -1,7 +1,14 @@
 package org.group8.GUI;
 
+import org.group8.bostonmetrosystem.BostonMetro;
+import org.group8.bostonmetrosystem.MetroMapParser;
+import org.group8.bostonmetrosystem.Station;
+import org.group8.bostonmetrosystem.Track;
+import org.group8.directedgraph.DirectedGraph;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GUI {
     private static JFrame frame;
@@ -12,6 +19,7 @@ public class GUI {
     }
 
     public static void frame(){
+        BostonMetro bostonMetro = new BostonMetro();
         frame = new JFrame("Boston Metro System"); //Creates the window for the GUI
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -21,8 +29,8 @@ public class GUI {
         JLabel originStation = new JLabel("Origin Station");
         JLabel finalStation = new JLabel("Final Station");
 
-        JButton temp1 = new JButton("DropDown Box");
-        JButton temp2 = new JButton("DropDown Box");
+        JComboBox stationList = new JComboBox(bostonMetro.getStations().toArray());
+        JComboBox stationList2 = new JComboBox(bostonMetro.getStations().toArray());
         JButton search = new JButton("Search");
 
         //Text area to show the route
@@ -36,8 +44,8 @@ public class GUI {
 
         //Add the dropdown lists, buttons and text area to the panel
         JPanel panel1 = new JPanel(new GridLayout(0,4));
-        panel1.add(temp1);
-        panel1.add(temp2);
+        panel1.add(stationList);
+        panel1.add(stationList2);
         panel1.add(search);
         panel1.add(textBox);
 
@@ -47,6 +55,7 @@ public class GUI {
         frame.pack();
         frame.setSize(500, 100);
         frame.setVisible(true);
-    }
 
+       // stationList.add()
+    }
 }
