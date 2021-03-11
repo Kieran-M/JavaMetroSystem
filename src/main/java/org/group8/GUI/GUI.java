@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GUI {
     public static void guiComponents(Container pane) {
@@ -44,18 +45,22 @@ public class GUI {
         JTextArea textBox = new JTextArea();
         textBox.setEditable(false);
 
+        //ScrollPane
+        //JScrollPane scroll = new JScrollPane(textBox,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         //Buttons
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //textBox.setText("");
                 ArrayList <Station> route = new ArrayList<>(bm.getRoute());
+                Collections.reverse(route);
                 for (Station s : route) {
                     textBox.append(s.getName() + "\n");
                 }
             }
         });
-
 
 
         //Adding components to panel.
@@ -66,6 +71,7 @@ public class GUI {
         pane.add(searchButton);
         pane.add(textBox);
         pane.add(imgLabel);
+        //pane.add(scroll);
 
         //Absolute positioning for components
         Insets insets = pane.getInsets();
