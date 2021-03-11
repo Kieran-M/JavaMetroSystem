@@ -80,9 +80,7 @@ public class BostonMetro {
     }
 
     public List<Station> getStations() {
-        List<String> stationNames = new ArrayList<>();
-        List<Station> StationList = graph.getVertices();
-        return StationList;
+        return graph.getVertices();
     }
 
     /**

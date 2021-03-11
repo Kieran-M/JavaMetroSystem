@@ -27,7 +27,6 @@ public class GUI {
 
         //Dropdowns
         BostonMetro bm = new BostonMetro();
-        //ArrayList<Station> array = newClassObj.getStationArray();
         JComboBox stationList = new JComboBox(bm.getStations().toArray());
         JComboBox stationList2 = new JComboBox(bm.getStations().toArray());
         stationList.setSelectedItem(0);
@@ -51,9 +50,9 @@ public class GUI {
         //Textbox
         JTextArea textBox = new JTextArea();
         textBox.setEditable(false);
-
         //ScrollPane
-        //JScrollPane scroll = new JScrollPane(textBox,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane scroll = new JScrollPane(textBox);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         //Buttons
         JButton searchButton = new JButton("Search");
@@ -76,9 +75,8 @@ public class GUI {
         pane.add(stationList);
         pane.add(stationList2);
         pane.add(searchButton);
-        pane.add(textBox);
         pane.add(imgLabel);
-        //pane.add(scroll);
+        pane.add(scroll);
 
         //Absolute positioning for components
         Insets insets = pane.getInsets();
@@ -92,7 +90,7 @@ public class GUI {
         stationList2.setBounds(150 + insets.left, 425 + insets.top, 100, size.height);
         size = searchButton.getPreferredSize();
         searchButton.setBounds(275 + insets.left, 425 + insets.top, 80, size.height);
-        textBox.setBounds(375 + insets.left, 425 + insets.top, 300, 225);
+        scroll.setBounds(375 + insets.left, 425 + insets.top, 300, 225);
         imgLabel.setBounds(170 + insets.left, 20 + insets.top, 350, 350);
     }
 
