@@ -88,4 +88,9 @@ public class Station {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

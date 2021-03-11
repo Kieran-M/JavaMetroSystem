@@ -24,7 +24,7 @@ public class BostonMetro {
     /**
      * A {@code String} which stores the users destination station
      */
-    private Station destination = new Station(13, "WoodIsland") ;
+    private Station destination = new Station(1, "OakGrove") ;
     /**
      * A {@code List} which stores the route of the Boston Metro between the current station and the destination
      */
@@ -79,13 +79,10 @@ public class BostonMetro {
         return destination;
     }
 
-    public List<String> getStations() {
+    public List<Station> getStations() {
         List<String> stationNames = new ArrayList<>();
         List<Station> StationList = graph.getVertices();
-        for (Station station1 : StationList) {
-            stationNames.add(station1.getName());
-        }
-        return stationNames;
+        return StationList;
     }
 
     /**

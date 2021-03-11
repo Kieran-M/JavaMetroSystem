@@ -41,6 +41,13 @@ public class GUI {
             }
         });
 
+        stationList2.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                bm.setDestination((Station)stationList2.getSelectedItem());
+            }
+        });
+
         //Textbox
         JTextArea textBox = new JTextArea();
         textBox.setEditable(false);
@@ -53,7 +60,7 @@ public class GUI {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //textBox.setText("");
+                textBox.setText("");
                 ArrayList <Station> route = new ArrayList<>(bm.getRoute());
                 Collections.reverse(route);
                 for (Station s : route) {
@@ -80,9 +87,9 @@ public class GUI {
         size = destinationStation.getPreferredSize();
         destinationStation.setBounds(150 + insets.left, 400 + insets.top, size.width, size.height);
         size = stationList.getPreferredSize();
-        stationList.setBounds(25 + insets.left, 425 + insets.top, 80, size.height);
+        stationList.setBounds(25 + insets.left, 425 + insets.top, 100, size.height);
         size = stationList2.getPreferredSize();
-        stationList2.setBounds(150 + insets.left, 425 + insets.top, 80, size.height);
+        stationList2.setBounds(150 + insets.left, 425 + insets.top, 100, size.height);
         size = searchButton.getPreferredSize();
         searchButton.setBounds(275 + insets.left, 425 + insets.top, 80, size.height);
         textBox.setBounds(375 + insets.left, 425 + insets.top, 300, 225);
