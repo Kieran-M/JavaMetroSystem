@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group8.PrimaryController">
+   <children>
+      <Label prefHeight="79.0" prefWidth="327.0" style="-fx-background-color: white;" text="Boston Metro System">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <Button fx:id="primaryButton" layoutX="630.0" layoutY="127.0" onAction="#getRoute" prefHeight="34.0" prefWidth="128.0" text="Search">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="homeStation" layoutX="14.0" layoutY="131.0" onAction="#homeStationChange" prefHeight="52.0" prefWidth="228.0" promptText="Stations" />
+            <ComboBox fx:id="destinationStation" layoutX="304.0" layoutY="131.0" onAction="#destinationStationChanged" prefHeight="52.0" prefWidth="228.0" promptText="Stations" />
+            <Label layoutX="14.0" layoutY="83.0" text="Home Station">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="304.0" layoutY="83.0" text="Destination Station">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="textBox" editable="false" layoutX="14.0" layoutY="225.0" prefHeight="744.0" prefWidth="777.0">
+               <font>
+                  <Font size="36.0" />
+               </font></TextArea>
+            <ImageView fitHeight="1046.0" fitWidth="1059.0" layoutX="816.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bostonmetro.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

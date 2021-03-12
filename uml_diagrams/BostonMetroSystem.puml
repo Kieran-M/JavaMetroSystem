@@ -1,0 +1,43 @@
+@startuml
+!include skinparam.puml
+!include MultiGraphADT.puml
+
++class BostonMetro{
+    -ArrayList<String> route
+    +getRoute()
+}
+
++class MetroMapParser{
+    +usage()
+    +generateGraphFromFile()
+}
+
++class Station{
+    -int id
+    -String station
+    -String metroLine
+    +getID()
+    +getName()
+    +getMetroLine()
+    +setID(int ID)
+    +setName(int name)
+    +setMetroLine(String line)
+}
+
++class Track implements DirectedEdge{
+    -String lineColour
+    -V sourceVertex
+    -V targetVertex
+    +getLineColour()
+    +getSourceVertex()
+    +getTargetVertex()
+}
+
+
+BostonMetro --> MetroMapParser
+BostonMetro o-- Station
+MetroMapParser --> Station
+MetroMapParser --> Track
+MetroMapParser --> MultiGraph
+
+@enduml
