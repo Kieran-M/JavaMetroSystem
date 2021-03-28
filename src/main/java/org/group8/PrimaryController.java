@@ -3,6 +3,11 @@ package org.group8;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import org.group8.bostonmetrosystem.BostonMetro;
 import org.group8.bostonmetrosystem.Station;
 import javafx.collections.FXCollections;
@@ -14,9 +19,16 @@ import javafx.scene.control.TextArea;
 
 public class PrimaryController {
 
+    public Button changeView;
+    private Double zoomScaleX;
+
+    private Double zoomScaleY;
+
     private final BostonMetro bm = new BostonMetro();
-
-
+    @FXML
+    private ImageView mapImage;
+    @FXML
+    private Slider zoomSlider;
     @FXML
     private TextArea textBox;
     @FXML
@@ -31,6 +43,8 @@ public class PrimaryController {
     public void initialize(){
         this.clearData();
         this.setData(bm.getStations());
+        zoomScaleX = 1.00;
+        zoomScaleY = 1.00;
     }
 
     /**
@@ -84,6 +98,24 @@ public class PrimaryController {
         textBox.clear();
         textBox.setText(txt);
     }
+    @FXML
+    private void changeZoom(ScrollEvent scrollEvent) {
+        if (scrollEvent.getDeltaY() > 0) {
+            if (zoomScaleX + 1 <= 5) {
+                zoomScaleX += 1;
+                zoomScaleY += 1;
+                mapImage.setScaleX(zoomScaleX);
+                mapImage.setScaleY(zoomScaleY);
+            }
+        } else {
+            if (zoomScaleX - 1 >= 1) {
+                zoomScaleX -= 1;
+                zoomScaleY -= 1;
+                mapImage.setScaleX(zoomScaleX);
+                mapImage.setScaleY(zoomScaleY);
+            }
+        }
+    }
 
     /**
      * Changes the current home station to the newly selected station
@@ -116,6 +148,20 @@ public class PrimaryController {
         }
         //Update the new destination station
         bm.setDestination(bm.lookupStation(destinationStation.getValue()));
+    }
+
+    /**
+     * Changes to a more detailed view of the boston metro
+     * Currently doessnt work (URL problems)
+     * @param actionEvent
+     */
+    public void changeImage(ActionEvent actionEvent) {
+        if(mapImage.getImage().getUrl().equals("bostonmetro.png")){
+            mapImage.setImage(new Image("src/main/resources/org/group8/bostonmetro2.png"));
+        }
+        else{
+            mapImage.setImage(new Image("src/main/resources/org/group8/bostonmetro.png"));
+        }
     }
 }
 

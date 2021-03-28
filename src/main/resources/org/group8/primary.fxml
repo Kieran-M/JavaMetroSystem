@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,13 +21,13 @@
       </Label>
       <AnchorPane prefHeight="1080.0" prefWidth="1920.0">
          <children>
-            <Button fx:id="primaryButton" layoutX="630.0" layoutY="127.0" onAction="#getRoute" prefHeight="34.0" prefWidth="128.0" text="Search">
+            <Button fx:id="searchButton" layoutX="630.0" layoutY="127.0" onAction="#getRoute" prefHeight="34.0" prefWidth="128.0" text="Search" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="28.0" />
                </font>
             </Button>
-            <ComboBox fx:id="homeStation" layoutX="14.0" layoutY="131.0" onAction="#homeStationChange" prefHeight="52.0" prefWidth="228.0" promptText="Stations" />
-            <ComboBox fx:id="destinationStation" layoutX="304.0" layoutY="131.0" onAction="#destinationStationChanged" prefHeight="52.0" prefWidth="228.0" promptText="Stations" />
+            <ComboBox fx:id="homeStation" layoutX="14.0" layoutY="131.0" onAction="#homeStationChange" prefHeight="52.0" prefWidth="228.0" promptText="Stations" VBox.vgrow="ALWAYS" />
+            <ComboBox fx:id="destinationStation" layoutX="304.0" layoutY="131.0" onAction="#destinationStationChanged" prefHeight="52.0" prefWidth="228.0" promptText="Stations" VBox.vgrow="ALWAYS" />
             <Label layoutX="14.0" layoutY="83.0" text="Home Station">
                <font>
                   <Font size="27.0" />
@@ -37,15 +38,25 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <TextArea fx:id="textBox" editable="false" layoutX="14.0" layoutY="225.0" prefHeight="744.0" prefWidth="777.0">
+            <TextArea fx:id="textBox" editable="false" layoutX="14.0" layoutY="225.0" prefHeight="744.0" prefWidth="777.0" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="36.0" />
-               </font></TextArea>
-            <ImageView fitHeight="1046.0" fitWidth="1059.0" layoutX="816.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@bostonmetro.png" />
-               </image>
-            </ImageView>
+               </font>
+            </TextArea>
+            <ScrollPane hbarPolicy="ALWAYS" layoutX="835.0" layoutY="103.0" prefHeight="867.0" prefWidth="918.0" vbarPolicy="ALWAYS">
+               <content>
+                  <ImageView fx:id="mapImage" fitHeight="866.0" fitWidth="897.0" onScroll="#changeZoom" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bostonmetro.png" />
+                     </image>
+                  </ImageView>
+               </content>
+            </ScrollPane>
+            <Button fx:id="changeView" layoutX="1515.0" layoutY="23.0" onAction="#changeImage" prefHeight="60.0" prefWidth="238.0" text="Detailed View">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
