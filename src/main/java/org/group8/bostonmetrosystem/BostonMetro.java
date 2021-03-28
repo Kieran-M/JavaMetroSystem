@@ -87,6 +87,7 @@ public class BostonMetro {
         for (Station station1 : stationList) {
             stationNames.add(station1.getName());
         }
+        Collections.sort(stationNames);
         return stationNames;
     }
 

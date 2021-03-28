@@ -202,6 +202,12 @@ public class MetroMapParser
                 if (!inboundID.equals("0")) {
                     trackList.add(new Track<>(lineName, Integer.parseInt(stationID), Integer.parseInt(inboundID)));
                 }
+
+                //Duplicate station so we add line Line at the end of the station to identify the correct station
+                if (stationName.equals("St.PaulStreet")){
+                    String lineChar = "(" + lineName.charAt(lineName.length() -1) + ")";
+                    stationName = stationName + lineChar;
+                }
             }
 
             Station station = new Station(Integer.parseInt(stationID), stationName);
