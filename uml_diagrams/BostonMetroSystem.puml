@@ -1,43 +1,58 @@
 @startuml
 !include skinparam.puml
 !include MultiGraphADT.puml
+!include GUI.puml
 
 +class BostonMetro{
+    -ArrayList<String> stationList
+    -Station currentStation;
+    -Station destination
     -ArrayList<String> route
-    +getRoute()
+    -MetroMapParser mmp
+    -DirectedGraph<Station, Track<Station>> graph
+    +Station getStation()
+    +void setHomeStation(Station name)
+    +void setDestination(Station dest)
+    +Station getDestination()
+    +List<String> getStations()
+    +List<Station> getRoute()
+    +Station lookupStation(String name)
 }
 
 +class MetroMapParser{
-    +usage()
-    +generateGraphFromFile()
+    -void usage()
+    +DirectedGraph<Station, Track<Station>> generateGraphFromFile()
 }
 
 +class Station{
     -int id
-    -String station
+    -String name
     -String metroLine
-    +getID()
-    +getName()
-    +getMetroLine()
-    +setID(int ID)
-    +setName(int name)
-    +setMetroLine(String line)
+    +int getID()
+    +String getName()
+    +String getMetroLine()
+    +void setMetroLine(String line)
+    +void setID(int id)
+    +void setName(String name)
+    +boolean equals(Object obj)
+    +int hashCode()
 }
 
-+class Track implements DirectedEdge{
++class Track<V> implements DirectedEdge{
     -String lineColour
     -V sourceVertex
     -V targetVertex
-    +getLineColour()
-    +getSourceVertex()
-    +getTargetVertex()
+    +String getLineColour()
+    +V getSourceVertex()
+    +V getTargetVertex()
 }
 
-
+App --> BostonMetro
 BostonMetro --> MetroMapParser
 BostonMetro o-- Station
 MetroMapParser --> Station
 MetroMapParser --> Track
-MetroMapParser --> MultiGraph
+MetroMapParser --* MultiGraph
+MultiGraph --> Track
 
 @enduml

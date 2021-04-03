@@ -1,44 +1,44 @@
 @startuml
 !include skinparam.puml
 
-+interface DirectedGraph extends DirectedEdge{
++interface DirectedGraph<V, E extends DirectedEdge<V>>{
     -String NOVERTEXTERROR
-    +addVertex(V vertex)
-    +addVertices(Collection<extends v> vertices)
-    +addEdge(E edge)
-    +addEdges(Collection<extends E> edges)
-    +removeVertex(V vertex)
-    +removeEdge(V sourceVertex, V targetVertex)
-    +removeEdge(E edge)
-    +isAdjacent(V sourceVertex, V targetVertex)
-    +isEmpty()
-    +getNumVertices()
-    +getNumEdges()
-    +getAdjacent()
-    +getVertices()
+    +boolean addVertex(V vertex)
+    +boolean addVertices(Collection<? extends v> vertices)
+    +boolean addEdge(E edge)
+    +boolean addEdges(Collection<? extends E> edges)
+    +boolean removeVertex(V vertex)
+    +boolean removeEdge(V sourceVertex, V targetVertex)
+    +boolean removeEdge(E edge)
+    +boolean isAdjacent(V sourceVertex, V targetVertex)
+    +boolean isEmpty()
+    +int getNumVertices()
+    +int getNumEdges()
+    +List<V> getAdjacent(V vertex)
+    +List<V> getVertices()
 }
 
-+interface DirectedEdge{
-    +getSourceVertex()
-    +getTargetVertex()
++interface DirectedEdge<V>{
+    +V getSourceVertex()
+    +V getTargetVertex()
 }
 
-+class MultiGraph extends DirectedEdge implements DirectedGraph {
-    -ArrayList<Vertex> Vertices
-    -ArrayList<Edge> edges
-    +addVertex(V vertex)
-    +addVertices(Collection<extends v> vertices)
-    +addEdge(E edge)
-    +addEdges(Collection<extends E> edges)
-    +removeVertex(V vertex)
-    +removeEdge(V sourceVertex, V targetVertex)
-    +removeEdge(E edge)
-    +isAdjacent(V sourceVertex, V targetVertex)
-    +isEmpty()
-    +getNumVertices()
-    +getNumEdges()
-    +getAdjacent()
-    +getVertices()
++class MultiGraph<V, E extends DirectedEdge<V>> implements DirectedGraph {
+    -ArrayList<V> Vertices
+    -ArrayList<E> edges
+    +boolean addVertex(V vertex)
+    +boolean addVertices(Collection<? extends V> vertices)
+    +boolean addEdge(E edge)
+    +boolean addEdges(Collection<? extends E> edges)
+    +boolean removeVertex(V vertex)
+    +boolean removeEdge(V sourceVertex, V targetVertex)
+    +boolean removeEdge(E edge)
+    +boolean isAdjacent(V sourceVertex, V targetVertex)
+    +boolean isEmpty()
+    +int getNumVertices()
+    +int getNumEdges()
+    +List<V> getAdjacent(V vertex)
+    +List<V> getVertices()
 }
 
 @enduml

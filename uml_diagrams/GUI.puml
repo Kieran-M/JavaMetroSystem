@@ -1,0 +1,31 @@
+@startuml
+!include skinparam.puml
+
++class PrimaryController{
+    -Button changeView
+    -Double zoomScaleX
+    -Double zoomScaleY
+    -BostonMetro bm
+    -ImageView mapImage
+    -Slider zoomSlider
+    -TextArea textBox
+    -ComboBox<String> homeStation
+    -ComboBox<String> destinationStation
+    +void initialize()
+    +void clearData()
+    +void setData(List<String> items)
+    +void getRoute()
+    -void updateTextArea(String txt)
+    -void changeZoom(ScrollEvent scrollEvent)
+    +void homeStationChange(ActionEvent actionEvent)
+    +void destinationStationChanged(ActionEvent actionEvent)
+    +void changeImage(ActionEvent actionEvent)
+}
+
++class App extends PrimaryController{
+    -Scene scene
+    +void start(Stage stage)
+    +Parent loadFXML(String fxml)
+}
+
+@enduml
