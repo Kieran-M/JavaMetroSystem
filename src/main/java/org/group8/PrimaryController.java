@@ -46,8 +46,8 @@ public class PrimaryController {
         this.clearData();
         this.setData(bm.getStations());
         this.gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.DARKGREEN);
-        gc.setStroke(Color.DARKGREEN);
+        gc.setFill(Color.BLACK);
+        gc.setStroke(Color.BLACK);
         parseCoords();
     }
 
@@ -137,7 +137,7 @@ public class PrimaryController {
     }
 
     /**
-     * Updates the text area with the given text
+     * Draws the route between current and destination station
      * @param route route of stations to be highlighted
      */
     @FXML
