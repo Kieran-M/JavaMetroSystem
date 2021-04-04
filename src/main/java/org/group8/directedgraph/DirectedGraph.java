@@ -75,14 +75,6 @@ public interface DirectedGraph<V, E extends DirectedEdge<V>> {
     boolean removeEdge(V sourceVertex, V targetVertex);
 
     /**
-     * Removes the specified edge from the directed graph.
-     *
-     * @param edge the edge to be removed from the directed graph
-     * @return {@code true} if the directed graph contained the specified edge
-     */
-    boolean removeEdge(E edge);
-
-    /**
      * Checks if the specified vertices are connected by an edge.
      *
      * @param sourceVertex the source vertex of the edge
