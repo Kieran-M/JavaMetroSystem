@@ -2,12 +2,11 @@
 !include skinparam.puml
 
 +class PrimaryController{
-    -Button changeView
-    -Double zoomScaleX
-    -Double zoomScaleY
+    -GraphicsContent gc
     -BostonMetro bm
-    -ImageView mapImage
-    -Slider zoomSlider
+    -Button searchButton
+    -Canvas canvas
+    -ImageView mapView
     -TextArea textBox
     -ComboBox<String> homeStation
     -ComboBox<String> destinationStation
@@ -15,8 +14,9 @@
     +void clearData()
     +void setData(List<String> items)
     +void getRoute()
+    +void drawRoute()
+    +void parseCoords()
     -void updateTextArea(String txt)
-    -void changeZoom(ScrollEvent scrollEvent)
     +void homeStationChange(ActionEvent actionEvent)
     +void destinationStationChanged(ActionEvent actionEvent)
     +void changeImage(ActionEvent actionEvent)
