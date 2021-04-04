@@ -19,7 +19,6 @@
     -void updateTextArea(String txt)
     +void homeStationChange(ActionEvent actionEvent)
     +void destinationStationChanged(ActionEvent actionEvent)
-    +void changeImage(ActionEvent actionEvent)
 }
 
 +class App extends PrimaryController{
