@@ -40,6 +40,8 @@ public class BostonMetroTest {
 
         BostonMetro bm = new BostonMetro();
         Assertions.assertEquals(bm.lookupStation("OakGrove"), station1);
+        Assertions.assertNotEquals(bm.lookupStation("Airport"), stationList.get(0));
+        Assertions.assertNotEquals(bm.lookupStation("Airport"), stationList.get(1));
     }
 
     @Test
