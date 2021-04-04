@@ -9,10 +9,6 @@ public class Station {
      * A {@code String} which stores the station name
      */
     private String name;
-    /**
-     * A {@code String} which stores which line the metro takes
-     */
-    private String metroLine;
 
     /**
      * Constructs a station with the specified ID and Name
@@ -38,30 +34,6 @@ public class Station {
      */
     public String getName(){
         return name;
-    }
-
-    /**
-     * Gets the Metro Line
-     * @return the metro line
-     */
-    public String getMetroLine(){
-        return metroLine;
-    }
-
-    /**
-     * Sets the line for the metro
-     * @param line the line the metro is going to take from the station
-     */
-    public void setMetroLine(String line){
-        metroLine = line;
-    }
-
-    public void setID(int id){
-        this.id = id;
-    }
-
-    public void setName(String name){
-        this.name = name;
     }
 
     /**

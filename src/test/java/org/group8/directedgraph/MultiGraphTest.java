@@ -100,22 +100,6 @@ public class MultiGraphTest {
     }
 
     @Test
-    void removingEdgeByEdge() throws VertexNotFoundException {
-        DirectedGraph<String, ConcreteDirectedEdge<String>> graph = new MultiGraph<>();
-        graph.addVertex("v1");
-        graph.addVertex("v2");
-        ConcreteDirectedEdge<String> edge = new ConcreteDirectedEdge<>("v1", "v2");
-        ConcreteDirectedEdge<String> edge1 = new ConcreteDirectedEdge<>("v2", "v1");
-        graph.addEdge(edge);
-        graph.addEdge(edge1);
-
-        Assertions.assertEquals(2, graph.getNumEdges());
-        Assertions.assertTrue(graph.removeEdge(new ConcreteDirectedEdge<>("v2", "v1")));
-        Assertions.assertEquals(1, graph.getNumEdges());
-        Assertions.assertFalse(graph.removeEdge(new ConcreteDirectedEdge<>("non", "existent")));
-    }
-
-    @Test
     void isAdjacent() {
 
     }

@@ -1,13 +1,13 @@
 package org.group8;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
 import org.group8.bostonmetrosystem.BostonMetro;
 import org.group8.bostonmetrosystem.Station;
 import javafx.collections.FXCollections;
@@ -18,33 +18,37 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
 public class PrimaryController {
-
-    public Button changeView;
-    private Double zoomScaleX;
-
-    private Double zoomScaleY;
-
     private final BostonMetro bm = new BostonMetro();
+
+    HashMap<String, double[]> coordsMap;
+
     @FXML
-    private ImageView mapImage;
-    @FXML
-    private Slider zoomSlider;
+    private GraphicsContext gc;
     @FXML
     private TextArea textBox;
     @FXML
     private ComboBox<String> homeStation;
     @FXML
     private ComboBox<String> destinationStation;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private Canvas canvas;
+    @FXML
+    private ImageView mapImage;
 
     /**
-     * Initialises the comboboxes by clearing them and then filling with the stations parsed in boston metro
+     * Initialises the comboboxes by clearing them and then filling with the stations parsed in boston metro,
+     * sets the canvas and gets each stations coordinates on the canvas for drawing on later
      */
     @FXML
     public void initialize(){
         this.clearData();
         this.setData(bm.getStations());
-        zoomScaleX = 1.00;
-        zoomScaleY = 1.00;
+        this.gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.setStroke(Color.BLACK);
+        parseCoords();
     }
 
     /**
@@ -77,7 +81,7 @@ public class PrimaryController {
     }
 
     /**
-     * Searches for a route between the two selected stations and displays it to the textarea
+     * Searches for a route between the two selected stations, displays it to the textarea and then shows the route on the map
      */
     @FXML
     void getRoute() {
@@ -87,6 +91,7 @@ public class PrimaryController {
             sb.append(station.getName()).append("\n");
         }
         this.updateTextArea(sb.toString());
+        drawRoute(route);
     }
 
     /**
@@ -97,24 +102,6 @@ public class PrimaryController {
     private void updateTextArea(String txt){
         textBox.clear();
         textBox.setText(txt);
-    }
-    @FXML
-    private void changeZoom(ScrollEvent scrollEvent) {
-        if (scrollEvent.getDeltaY() > 0) {
-            if (zoomScaleX + 1 <= 5) {
-                zoomScaleX += 1;
-                zoomScaleY += 1;
-                mapImage.setScaleX(zoomScaleX);
-                mapImage.setScaleY(zoomScaleY);
-            }
-        } else {
-            if (zoomScaleX - 1 >= 1) {
-                zoomScaleX -= 1;
-                zoomScaleY -= 1;
-                mapImage.setScaleX(zoomScaleX);
-                mapImage.setScaleY(zoomScaleY);
-            }
-        }
     }
 
     /**
@@ -140,7 +127,6 @@ public class PrimaryController {
     public void destinationStationChanged(ActionEvent actionEvent) {
         //If changing destination station to the same station as home station then change the home station to the previous destination station
         if(destinationStation.getValue().equals(homeStation.getValue())){
-            System.out.println("Yep");
             //Previously selected station will be stored in the boston metro object
             homeStation.setValue(bm.getDestination().getName());
             //Update the new home station
@@ -151,17 +137,39 @@ public class PrimaryController {
     }
 
     /**
-     * Changes to a more detailed view of the boston metro
-     * Currently doessnt work (URL problems)
-     * @param actionEvent
+     * Draws the route between current and destination station
+     * @param route route of stations to be highlighted
      */
-    public void changeImage(ActionEvent actionEvent) {
-        if(mapImage.getImage().getUrl().equals("bostonmetro.png")){
-            mapImage.setImage(new Image("src/main/resources/org/group8/bostonmetro2.png"));
+    @FXML
+    public void drawRoute(List<Station> route){
+        //CLear the canvas
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        //Draw oval representing the station on canvas
+        for (Station station : route) {
+            double[] coords = coordsMap.get(station.getName());
+            gc.fillOval(coords[0],coords[1],13,13);
         }
-        else{
-            mapImage.setImage(new Image("src/main/resources/org/group8/bostonmetro.png"));
+    }
+
+    /**
+     * Parse each stations coordinates for drawing on canvas
+     */
+    public void parseCoords(){
+        coordsMap = new HashMap<>();
+        File file = new File("src/main/resources/org/group8/stationCoordinates.txt");
+
+        try{
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String stationName = sc.next();
+                double[] coords = {sc.nextInt(), sc.nextInt()};
+                coordsMap.put(stationName,coords);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
         }
+
+
     }
 }
 
