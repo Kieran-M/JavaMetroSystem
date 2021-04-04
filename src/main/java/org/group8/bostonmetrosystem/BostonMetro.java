@@ -1,6 +1,7 @@
 package org.group8.bostonmetrosystem;
 
 import org.group8.directedgraph.DirectedGraph;
+import org.group8.directedgraph.VertexNotFoundException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,15 +15,27 @@ public class BostonMetro {
     /**
      * A {@code String} which stores the current station the user is at
      */
-    private Station currentStation;
+
+    private Station currentStation = new Station(1, "OakGrove") ;
     /**
      * A {@code String} which stores the users destination station
      */
-    private Station destination;
+    private Station destination = new Station(1, "OakGrove") ;
     /**
      * A {@code List} which stores the route of the Boston Metro between the current station and the destination
      */
     private ArrayList<Station> route;
+    public MetroMapParser mmp;
+    DirectedGraph<Station, Track<Station>> graph;
+
+    public BostonMetro() {
+        try {
+            mmp = new MetroMapParser("src/main/resources/bostonmetro.txt");
+            graph = mmp.generateGraphFromFile();
+        } catch (IOException | BadFileException | VertexNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Gets the current station
@@ -62,19 +75,20 @@ public class BostonMetro {
         return destination;
     }
 
+    public List<Station> getStations() {
+        return graph.getVertices();
+    }
+
     /**
      * Gets the route between the station and the destination
      *
      * @return a {@code List} of stations between the current station and the destination station
      */
-    public List<Station> getRoute() throws IOException {
-
-        MetroMapParser mmp = new MetroMapParser("src/main/resources/bostonmetro.txt");
+    public List<Station> getRoute()  {
         try {
-            DirectedGraph<Station, Track<Station>> graph = mmp.generateGraphFromFile();
             ArrayList<Station> agenda = new ArrayList<>(); //Arraylist of stations to be checked
             agenda.add(this.getStation()); //Adding the current station to the agenda
-            HashMap<Station, Station> stationLinks = new HashMap<>(); //Hasmap containing the links between stations
+            HashMap<Station, Station> stationLinks = new HashMap<>(); //Hashmap containing the links between stations
             route = new ArrayList<>(); //The route between the 2 stations
 
             //Check the agenda for goal station

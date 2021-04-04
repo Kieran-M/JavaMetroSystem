@@ -63,4 +63,9 @@ public class Station {
     public int hashCode() {
         return Objects.hash(id, getName());
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
