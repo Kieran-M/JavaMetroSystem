@@ -5,6 +5,7 @@ import org.group8.directedgraph.VertexNotFoundException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,25 +14,31 @@ import java.util.List;
  */
 public class BostonMetro {
     /**
+     * An {@code Object} which is an instance of the class Station
+     */
+    private ArrayList<Station> stationList;
+    /**
      * A {@code String} which stores the current station the user is at
      */
-
-    private Station currentStation = new Station(1, "OakGrove") ;
+    private Station currentStation;
     /**
      * A {@code String} which stores the users destination station
      */
-    private Station destination = new Station(1, "OakGrove") ;
+    private Station destination;
     /**
      * A {@code List} which stores the route of the Boston Metro between the current station and the destination
      */
     private ArrayList<Station> route;
-    public MetroMapParser mmp;
+
+    static MetroMapParser mmp;
+
     DirectedGraph<Station, Track<Station>> graph;
 
     public BostonMetro() {
         try {
-            mmp = new MetroMapParser("src/main/resources/bostonmetro.txt");
+            mmp = new MetroMapParser("src/main/resources/org/group8/bostonmetro.txt");
             graph = mmp.generateGraphFromFile();
+            stationList = new ArrayList<>(graph.getVertices());
         } catch (IOException | BadFileException | VertexNotFoundException e) {
             e.printStackTrace();
         }
@@ -52,7 +59,7 @@ public class BostonMetro {
      * @param name the station to be set
      */
     //Get station from user's input from the GUI
-    public void setStation(Station name) {
+    public void setHomeStation(Station name) {
         currentStation = name;
     }
 
@@ -75,8 +82,13 @@ public class BostonMetro {
         return destination;
     }
 
-    public List<Station> getStations() {
-        return graph.getVertices();
+    public List<String> getStations() {
+        ArrayList<String> stationNames = new ArrayList<>();
+        for (Station station1 : stationList) {
+            stationNames.add(station1.getName());
+        }
+        Collections.sort(stationNames);
+        return stationNames;
     }
 
     /**
@@ -110,11 +122,26 @@ public class BostonMetro {
                     }
                 }
             }
-            route.forEach(station-> System.out.println(station.getName()));
+            //Reverse to get the correct route
+            Collections.reverse(route);
             return route;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return route;
+    }
+
+    /**
+     * Looks up information about a station from its name
+     *
+     * @return a {@code Station} object containing all the information about the station
+     */
+
+    public Station lookupStation(String name){
+        for (Station station : stationList) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        } return null;
     }
 }

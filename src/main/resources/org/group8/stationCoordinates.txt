@@ -1,0 +1,210 @@
+OakGrove 628 58
+Malden 628 84
+Wonderland 866 135
+RevereBeach 844 157
+Wellington 628 109
+Beachmont 821 180
+Davis 335 177
+Alewife 313 156
+SuffolkDowns 799 201
+Porter 357 198
+OrientHeights 778 223
+SullivanSquare 628 139
+WoodIsland 753 248
+Harvard 378 221
+CommunityCollege 627 169
+Airport 728 273
+Lechmere 579 172
+Maverick 702 296
+SciencePark 603 195
+NorthStation 626 220
+Central 404 243
+Haymarket 626 270
+Kendall 429 271
+Bowdoin 528 272
+Charles/MGH 479 321
+Aquarium 679 322
+GovernmentCenter 576 320
+State 626 370
+ParkStreet 526 370
+DowntownCrossing 576 420
+Boylston 474 422
+Chinatown 527 471
+SouthStation 627 470
+Arlington 453 448
+BabcockStreet 257 326
+BrightonAvenue 235 325
+PleasantStreet 277 336
+St.PaulStreet(B) 292 350
+BostonUniversityWest 308 367
+FordhamRoad 235 325
+Copley 428 473
+HarvardAvenue 213 325
+BostonUniversityCentral 323 382
+NewEnglandMedicalCenter 477 520
+BostonUniversityEast 339 398
+BlandfordStreet 355 413
+Kenmore 373 431
+GriggsStreet/LongwoodAvenue 193 326
+WarrenStreet 158 352
+AllstonStreet 172 337
+Hynes/ICA 394 452
+BackBay/SouthEnd 427 571
+Prudential 406 493
+St.Mary'sStreet 314 407
+SummitAvenue 158 352
+HawesStreet 300 392
+Fenway 302 459
+KentStreet 284 379
+WashingtonStreet 143 368
+Broadway 678 521
+St.PaulStreet(C) 258 381
+Symphony 385 513
+CoolidgeCorner 241 394
+MassachusettsAvenue 406 594
+Longwood 283 478
+MountHoodRoad 143 368
+SutherlandRoad 126 383
+WinchesterStreet/SummitAv. 227 409
+BostonCollege 37 439
+NortheasternUniversity 369 532
+ChiswickRoad 111 399
+GreycliffRoad 79 431
+BrandonHall 211 425
+FairbanksStreet 195 440
+SouthStreet 79 431
+WashingtonSquare 180 455
+TappanStreet 164 472
+ChestnutHillAvenue 96 414
+MuseumofFineArts 351 550
+DeanRoad 148 487
+EnglewoodAvenue 133 502
+Ruggles 383 616
+ClevelandCircle 104 512
+LongwoodMedicalArea 333 567
+Beaconsfield 227 534
+Reservoir 208 553
+BrighamCircle 314 586
+FenwoodRoad 295 605
+MissionPark 275 624
+BrooklineVillage 265 497
+BrooklineHills 245 515
+Riverway 260 642
+RoxburyCrossing 359 639
+Andrew 703 546
+BackOfTheHill 242 659
+HeathStreet 225 674
+JacksonSquare 337 662
+JFK/UMass 728 570
+StonyBrook 315 684
+SavinHill 722 629
+GreenStreet 295 705
+ForestHills 273 723
+FieldsCorner 695 656
+Shawmut 669 682
+Ashmont 646 704
+CedarGrove 626 725
+ButlerStreet 610 742
+Milton 594 758
+CentralAvenue 578 774
+ValleyRoad 562 789
+CapenStreet 544 806
+Mattapan 527 822
+ChesnutHill 190 572
+NewtonCenter 151 586
+NewtonHighlands 128 586
+Eliot 105 586
+Waban 84 586
+Woodland 60 586
+Riverside 37 586
+NorthQuincy 779 621
+Wollaston 803 645
+QuincyCenter 827 671
+QuincyAdams 853 697
+Braintree 862 753
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

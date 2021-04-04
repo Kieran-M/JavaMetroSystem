@@ -1,0 +1,30 @@
+@startuml
+!include skinparam.puml
+
++class PrimaryController{
+    -GraphicsContent gc
+    -BostonMetro bm
+    -Button searchButton
+    -Canvas canvas
+    -ImageView mapView
+    -TextArea textBox
+    -ComboBox<String> homeStation
+    -ComboBox<String> destinationStation
+    +void initialize()
+    +void clearData()
+    +void setData(List<String> items)
+    +void getRoute()
+    +void drawRoute()
+    +void parseCoords()
+    -void updateTextArea(String txt)
+    +void homeStationChange(ActionEvent actionEvent)
+    +void destinationStationChanged(ActionEvent actionEvent)
+}
+
++class App extends PrimaryController{
+    -Scene scene
+    +void start(Stage stage)
+    +Parent loadFXML(String fxml)
+}
+
+@enduml
