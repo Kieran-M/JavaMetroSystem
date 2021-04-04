@@ -27,13 +27,8 @@
 +class Station{
     -int id
     -String name
-    -String metroLine
     +int getID()
     +String getName()
-    +String getMetroLine()
-    +void setMetroLine(String line)
-    +void setID(int id)
-    +void setName(String name)
     +boolean equals(Object obj)
     +int hashCode()
 }
