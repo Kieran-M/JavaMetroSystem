@@ -1,7 +1,5 @@
 package org.group8.bostonmetrosystem;
 
-import org.group8.directedgraph.MultiGraph;
-import org.group8.directedgraph.VertexNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BostonMetroTest {
+class BostonMetroTest {
 
-    private MultiGraph graph = new MultiGraph();
-    private BostonMetro bm = new BostonMetro();
+    private final BostonMetro bm = new BostonMetro();
 
     @Test
     void getRouteTest() {
@@ -48,7 +45,7 @@ public class BostonMetroTest {
     void getStationTest() {
         try {
             List<String> stations = bm.getStations();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

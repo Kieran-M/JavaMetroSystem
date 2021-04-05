@@ -1,21 +1,22 @@
-package org.group8;
+package org.group8.bostongui;
 
-import java.io.*;
-import java.util.*;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import org.group8.bostonmetrosystem.BostonMetro;
 import org.group8.bostonmetrosystem.Station;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class PrimaryController {
     private final BostonMetro bm = new BostonMetro();
@@ -31,18 +32,14 @@ public class PrimaryController {
     @FXML
     private ComboBox<String> destinationStation;
     @FXML
-    private Button searchButton;
-    @FXML
     private Canvas canvas;
-    @FXML
-    private ImageView mapImage;
 
     /**
      * Initialises the comboboxes by clearing them and then filling with the stations parsed in boston metro,
      * sets the canvas and gets each stations coordinates on the canvas for drawing on later
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
         this.clearData();
         this.setData(bm.getStations());
         this.gc = canvas.getGraphicsContext2D();
@@ -55,7 +52,7 @@ public class PrimaryController {
      * Clears the items in the comboboxes
      */
     @FXML
-    void clearData(){
+    void clearData() {
         homeStation.getItems().clear();
         destinationStation.getItems().clear();
     }
@@ -65,7 +62,7 @@ public class PrimaryController {
      * @param items A list of Station names
      */
     @FXML
-    void setData(List<String> items){
+    void setData(List<String> items) {
         this.clearData();
 
         ObservableList<String> oList = FXCollections.observableArrayList(items);
@@ -106,9 +103,8 @@ public class PrimaryController {
 
     /**
      * Changes the current home station to the newly selected station
-     * @param actionEvent onChange event
      */
-    public void homeStationChange(ActionEvent actionEvent) {
+    public void homeStationChange() {
         //If changing home station to the same station as destination then change the destination station to the previous home station
         if(homeStation.getValue().equals(destinationStation.getValue())){
             //Previously selected station will be stored in the boston metro object
@@ -122,9 +118,8 @@ public class PrimaryController {
 
     /**
      * Changes the current destination station to the newly selected station
-     * @param actionEvent onChange event
      */
-    public void destinationStationChanged(ActionEvent actionEvent) {
+    public void destinationStationChanged() {
         //If changing destination station to the same station as home station then change the home station to the previous destination station
         if(destinationStation.getValue().equals(homeStation.getValue())){
             //Previously selected station will be stored in the boston metro object
@@ -154,18 +149,17 @@ public class PrimaryController {
     /**
      * Parse each stations coordinates for drawing on canvas
      */
-    public void parseCoords(){
+    public void parseCoords() {
         coordsMap = new HashMap<>();
         File file = new File("src/main/resources/org/group8/stationCoordinates.txt");
 
-        try{
-            Scanner sc = new Scanner(file);
+        try(Scanner sc = new Scanner(file)) {
             while (sc.hasNext()) {
                 String stationName = sc.next();
                 double[] coords = {sc.nextInt(), sc.nextInt()};
                 coordsMap.put(stationName,coords);
             }
-        }catch(IOException e){
+        } catch(IOException e){
             e.printStackTrace();
         }
 

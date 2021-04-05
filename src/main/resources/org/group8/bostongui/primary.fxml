@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group8.PrimaryController">
+<VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group8.bostongui.PrimaryController">
    <children>
       <Label prefHeight="79.0" prefWidth="327.0" style="-fx-background-color: white;" text="Boston Metro System">
          <font>

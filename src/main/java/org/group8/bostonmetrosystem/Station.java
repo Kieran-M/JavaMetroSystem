@@ -1,5 +1,7 @@
 package org.group8.bostonmetrosystem;
 
+import java.util.Objects;
+
 public class Station {
     /**
      * An {@code int} which stores the stations ID

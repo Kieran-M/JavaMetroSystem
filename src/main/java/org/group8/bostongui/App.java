@@ -1,4 +1,4 @@
-package org.group8;
+package org.group8.bostongui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,22 +8,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
-
-    private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 1920, 1080);
+        Scene scene = new Scene(loadFXML(), 1920, 1080);
         stage.setScene(scene);
         stage.show();
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    private static Parent loadFXML() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("primary" + ".fxml"));
         return fxmlLoader.load();
     }
 

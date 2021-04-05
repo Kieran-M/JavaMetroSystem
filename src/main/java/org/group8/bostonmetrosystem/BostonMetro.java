@@ -30,13 +30,11 @@ public class BostonMetro {
      */
     private ArrayList<Station> route;
 
-    static MetroMapParser mmp;
-
     DirectedGraph<Station, Track<Station>> graph;
 
     public BostonMetro() {
         try {
-            mmp = new MetroMapParser("src/main/resources/org/group8/bostonmetro.txt");
+            MetroMapParser mmp = new MetroMapParser("src/main/resources/org/group8/bostonmetro.txt");
             graph = mmp.generateGraphFromFile();
             stationList = new ArrayList<>(graph.getVertices());
         } catch (IOException | BadFileException | VertexNotFoundException e) {
